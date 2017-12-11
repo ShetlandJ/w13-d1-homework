@@ -28,6 +28,13 @@ filmRouter.put('/:id', function(req, res){
   res.json({films})
 });
 
+filmRouter.put('/new-review/:id', function(req, res){
+  var film = films[req.params.id];
+  film.reviews.push(req.body);
+  films[req.params.id] = film;
+  res.json({ data: films });
+});
+
 filmRouter.delete('/:id', function(req, res) {
   films.splice(req.params.id, 1)
   res.json({data:films})
